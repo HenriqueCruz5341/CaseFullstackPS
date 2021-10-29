@@ -1,15 +1,19 @@
 import { Button, Grid, LinearProgress, Paper } from '@mui/material';
 import { Field, Formik } from 'formik';
 import { TextField } from 'formik-mui';
+import { useContext } from 'react';
 import Logo from '../../assets/images/Logo.svg';
+import { UserContext } from '../../components/userProvider';
 import { ValidationFormRegister } from '../../utils/validation';
 import { StyledContainer, StyledForm } from './styles';
 
 const Register = () => {
+  const { signIn } = useContext(UserContext);
+
   const handleSubmit = (values, { setSubmitting }) => {
     setTimeout(() => {
       setSubmitting(false);
-      window.localStorage.setItem('user', values.username);
+      signIn(values.username);
     }, 500);
   };
 

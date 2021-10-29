@@ -3,18 +3,17 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
 } from 'react-router-dom';
-import Footer from './components/footer';
-import Header from './components/header';
+import { ProtectRoute } from './components/protectRoute';
+import { UserProvider } from './components/userProvider';
 import Leads from './pages/leads';
 import NewLead from './pages/newLead';
 import Register from './pages/register';
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <CssBaseline />
       <Router>
         {/* <Header /> */}
@@ -22,17 +21,17 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/leads">
+          <ProtectRoute path="/leads">
             <Leads />
-          </Route>
-          <Route path="/newLead">
+          </ProtectRoute>
+          <ProtectRoute path="/newLead">
             <NewLead />
-          </Route>
+          </ProtectRoute>
           <Route exact path="/" render={() => <Redirect to="/register" />} />
         </Switch>
         {/* <Footer /> */}
       </Router>
-    </>
+    </UserProvider>
   );
 }
 
