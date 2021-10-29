@@ -2,6 +2,7 @@ import { Button, Grid, LinearProgress, Paper } from '@mui/material';
 import { Field, Formik } from 'formik';
 import { TextField } from 'formik-mui';
 import { useContext } from 'react';
+import { toast } from 'react-toastify';
 import Logo from '../../assets/images/Logo.svg';
 import { UserContext } from '../../components/userProvider';
 import { ValidationFormRegister } from '../../utils/validation';
@@ -14,6 +15,7 @@ const Register = () => {
     setTimeout(() => {
       setSubmitting(false);
       signIn(values.username);
+      toast.success('Usuário cadastrado com sucesso!');
     }, 500);
   };
 
@@ -86,7 +88,7 @@ const Register = () => {
                       onClick={submitForm}
                       fullWidth
                     >
-                      Submit
+                      Register
                     </Button>
                   </Grid>
                 </Grid>
