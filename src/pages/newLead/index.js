@@ -12,6 +12,7 @@ import { useHistory } from 'react-router';
 import { OpportunitiesCheckbox } from '../../components/opportunitiesCheckbox';
 import { ValidationFormLeads } from '../../utils/validation';
 import { phoneMask } from '../../utils/mask';
+import { toast } from 'react-toastify';
 
 const NewLead = () => {
   const history = useHistory();
@@ -39,6 +40,8 @@ const NewLead = () => {
         },
       ];
       window.localStorage.setItem('leads', JSON.stringify(leads));
+      toast.success('Lead cadastrada com sucesso!');
+      history.push('/leads');
     }, 500);
   };
 
