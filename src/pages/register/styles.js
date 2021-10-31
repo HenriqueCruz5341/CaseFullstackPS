@@ -9,6 +9,6 @@ export const StyledForm = styled(Form)`
 `;
 
 export const StyledContainer = styled(Container)`
-  height: 100vh;
+  height: 100vh - 72px;
   padding: 16vh 0px 0px 0px;
 `;

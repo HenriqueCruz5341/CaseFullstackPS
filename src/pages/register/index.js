@@ -1,10 +1,9 @@
-import { Button, Grid, LinearProgress, Paper } from '@mui/material';
+import { Button, Grid, LinearProgress, Paper, Typography } from '@mui/material';
 import { Field, Formik } from 'formik';
 import { TextField } from 'formik-mui';
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
-import Logo from '../../assets/images/Logo.svg';
 import { UserContext } from '../../components/userProvider';
 import { ValidationFormRegister } from '../../utils/validation';
 import { StyledContainer, StyledForm } from './styles';
@@ -27,7 +26,7 @@ const Register = () => {
       <Paper>
         <Grid container alignItems="center" justifyContent="center">
           <Grid item>
-            <img src={Logo} alt="logo" />
+            <Typography variant="h4">Cadastro</Typography>
           </Grid>
 
           <Formik
@@ -91,7 +90,7 @@ const Register = () => {
                       onClick={submitForm}
                       fullWidth
                     >
-                      Salvar
+                      Registrar
                     </Button>
                   </Grid>
                 </Grid>

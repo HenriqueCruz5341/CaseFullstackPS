@@ -6,12 +6,13 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ProtectRoute } from './components/protectRoute';
 import { UserProvider } from './components/userProvider';
 import Leads from './pages/leads';
 import NewLead from './pages/newLead';
 import Register from './pages/register';
-import 'react-toastify/dist/ReactToastify.css';
+import Header from './components/header';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
       />
       <CssBaseline />
       <Router>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           <Route path="/register">
             <Register />
