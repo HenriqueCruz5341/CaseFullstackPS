@@ -36,6 +36,7 @@ const NewLead = () => {
           name: values.name,
           phone: values.phone,
           email: values.email,
+          status: 'Cliente em Potencial',
           opportunities: parseOpportunities(values),
         },
       ];
@@ -47,6 +48,9 @@ const NewLead = () => {
 
   return (
     <Container maxWidth="lg">
+      <Grid item xs={12}>
+        <Typography variant="h4">Novo Lead</Typography>
+      </Grid>
       <Button variant="outlined" onClick={() => history.push('/leads')}>
         <ArrowBackIcon />
         Voltar
@@ -77,9 +81,6 @@ const NewLead = () => {
         }) => (
           <Form>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Typography variant="h4">Novo Lead</Typography>
-              </Grid>
               <Grid
                 container
                 alignItems="center"
