@@ -8,27 +8,26 @@ import {
   Grid,
 } from '@mui/material';
 import { HelperText } from './styles';
+import initialData from '../../utils/constants';
 
-const INITIAL_STATE = {
-  rpa: false,
-  digitalProduct: false,
-  analytics: false,
-  bpm: false,
-};
-
-export const OpportunitiesCheckbox = ({ errors, values, validateForm }) => {
-  const [checked, setChecked] = useState(INITIAL_STATE);
+export const OpportunitiesCheckbox = ({
+  errors,
+  values,
+  touched,
+  setFieldTouched,
+}) => {
+  const [checked, setChecked] = useState(initialData.opportunities);
 
   useEffect(() => {
-    if (checked !== INITIAL_STATE) {
+    if (checked !== initialData.opportunities) {
       values.all = !Object.values(checked).includes(false);
       values.rpa = checked.rpa;
       values.digitalProduct = checked.digitalProduct;
       values.analytics = checked.analytics;
       values.bpm = checked.bpm;
-      validateForm();
+      setFieldTouched('opportunities', true);
     }
-  }, [checked, validateForm, values]);
+  }, [checked, values, setFieldTouched]);
 
   const handleChange = (e) => {
     if (e.target.name === 'all') {
@@ -46,6 +45,14 @@ export const OpportunitiesCheckbox = ({ errors, values, validateForm }) => {
     }
   };
 
+  const hasError = () => {
+    const error1 = !!errors.opportunities && touched.opportunities;
+    const error2 = Object.keys(errors).length === 1 && errors.opportunities;
+    if (error1 || error2) return true;
+
+    return false;
+  };
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -55,10 +62,10 @@ export const OpportunitiesCheckbox = ({ errors, values, validateForm }) => {
           sx={{ m: 3 }}
           variant="standard"
           name="opportunities"
-          error={!!errors.opportunities}
+          error={hasError()}
         >
           <FormLabel component="legend">Oportunidades</FormLabel>
-          {!!errors.opportunities && (
+          {hasError() && (
             <HelperText>Selecione pelo menos uma oportunidade</HelperText>
           )}
           <FormGroup>

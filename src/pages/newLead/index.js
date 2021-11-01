@@ -48,121 +48,129 @@ const NewLead = () => {
 
   return (
     <Container maxWidth="lg">
-      <Grid item xs={12}>
-        <Typography variant="h4">Novo Lead</Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="h4">Novo Lead</Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="outlined" onClick={() => history.push('/leads')}>
+            <ArrowBackIcon />
+            Voltar
+          </Button>
+        </Grid>
+        <Formik
+          initialValues={{
+            name: '',
+            phone: '',
+            email: '',
+            all: false,
+            rpa: false,
+            digitalProduct: false,
+            analytics: false,
+            bpm: false,
+          }}
+          validate={ValidationFormLeads}
+          onSubmit={(values, { setSubmitting }) =>
+            handleSubmit(values, { setSubmitting })
+          }
+        >
+          {({
+            submitForm,
+            isSubmitting,
+            errors,
+            values,
+            touched,
+            status,
+            setFieldTouched,
+            setFieldValue,
+          }) => (
+            <Form>
+              <Grid container spacing={2}>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="center"
+                  item
+                  xs={10}
+                  md={6}
+                  spacing={2}
+                >
+                  <Grid item xs={10}>
+                    <Field
+                      component={TextField}
+                      name="name"
+                      type="text"
+                      label="Nome"
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+                  <Grid item xs={10}>
+                    <Field
+                      component={TextField}
+                      name="phone"
+                      type="text"
+                      label="Telefone"
+                      onChange={(e) =>
+                        setFieldValue('phone', phoneMask(e.target.value))
+                      }
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+                  <Grid item xs={10}>
+                    <Field
+                      component={TextField}
+                      name="email"
+                      type="email"
+                      label="Email"
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="center"
+                  item
+                  xs={8}
+                  md={6}
+                >
+                  <OpportunitiesCheckbox
+                    errors={errors}
+                    values={values}
+                    touched={touched}
+                    setFieldTouched={setFieldTouched}
+                    status={status}
+                  />
+                </Grid>
+                {isSubmitting && <LinearProgress />}
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="center"
+                  item
+                  xs={12}
+                >
+                  <Grid item xs={4}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      disabled={isSubmitting}
+                      onClick={submitForm}
+                      fullWidth
+                    >
+                      SALVAR
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Form>
+          )}
+        </Formik>
       </Grid>
-      <Button variant="outlined" onClick={() => history.push('/leads')}>
-        <ArrowBackIcon />
-        Voltar
-      </Button>
-      <Formik
-        initialValues={{
-          name: '',
-          phone: '',
-          email: '',
-          all: false,
-          rpa: false,
-          digitalProduct: false,
-          analytics: false,
-          bpm: false,
-        }}
-        validate={ValidationFormLeads}
-        onSubmit={(values, { setSubmitting }) =>
-          handleSubmit(values, { setSubmitting })
-        }
-      >
-        {({
-          submitForm,
-          isSubmitting,
-          errors,
-          values,
-          validateForm,
-          setFieldValue,
-        }) => (
-          <Form>
-            <Grid container spacing={2}>
-              <Grid
-                container
-                alignItems="center"
-                justifyContent="center"
-                item
-                xs={10}
-                md={6}
-                spacing={2}
-              >
-                <Grid item xs={10}>
-                  <Field
-                    component={TextField}
-                    name="name"
-                    type="text"
-                    label="Nome"
-                    fullWidth
-                    required
-                  />
-                </Grid>
-                <Grid item xs={10}>
-                  <Field
-                    component={TextField}
-                    name="phone"
-                    type="text"
-                    label="Telefone"
-                    onChange={(e) =>
-                      setFieldValue('phone', phoneMask(e.target.value))
-                    }
-                    fullWidth
-                    required
-                  />
-                </Grid>
-                <Grid item xs={10}>
-                  <Field
-                    component={TextField}
-                    name="email"
-                    type="email"
-                    label="Email"
-                    fullWidth
-                    required
-                  />
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                alignItems="center"
-                justifyContent="center"
-                item
-                xs={8}
-                md={6}
-              >
-                <OpportunitiesCheckbox
-                  errors={errors}
-                  values={values}
-                  validateForm={validateForm}
-                />
-              </Grid>
-              {isSubmitting && <LinearProgress />}
-              <Grid
-                container
-                alignItems="center"
-                justifyContent="center"
-                item
-                xs={12}
-              >
-                <Grid item xs={4}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    disabled={isSubmitting}
-                    onClick={submitForm}
-                    fullWidth
-                  >
-                    SALVAR
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Form>
-        )}
-      </Formik>
     </Container>
   );
 };

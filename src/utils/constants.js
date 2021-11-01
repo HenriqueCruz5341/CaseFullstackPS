@@ -17,6 +17,13 @@ const initialData = {
     },
   },
   columnOrder: ['column-1', 'column-2', 'column-3'],
+  opportunities: {
+    rpa: false,
+    digitalProduct: false,
+    analytics: false,
+    bpm: false,
+  },
+  statusLead: ['Cliente em Potencial', 'Dados Confirmados', 'Reunião Agendada'],
 };
 
 export default initialData;

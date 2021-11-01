@@ -5,12 +5,6 @@ import { useHistory } from 'react-router';
 import { Column } from '../../components/column';
 import initialData from '../../utils/constants';
 
-const STATUS_LEAD = [
-  'Cliente em Potencial',
-  'Dados Confirmados',
-  'Reunião Agendada',
-];
-
 const Leads = () => {
   const history = useHistory();
   const [leads, setLeads] = useState([]);
@@ -28,7 +22,7 @@ const Leads = () => {
       let segmentedLeads = [];
 
       leads.forEach((lead) => {
-        const destination = STATUS_LEAD.indexOf(lead.status);
+        const destination = initialData.statusLead.indexOf(lead.status);
         if (!segmentedLeads[destination]) segmentedLeads[destination] = [];
         segmentedLeads[destination].push(`${lead.id}`);
       });

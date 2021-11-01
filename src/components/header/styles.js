@@ -8,6 +8,7 @@ export const Navbar = styled('nav')`
   background-color: #272727;
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  margin-bottom: 40px;
 `;
 
 export const NavbarItems = styled('ul')`
