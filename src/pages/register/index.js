@@ -12,9 +12,20 @@ const Register = () => {
   const { signIn } = useContext(UserContext);
   const history = useHistory();
 
+  const registerUser = (values) => {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const newUser = {
+      id: users.length + 1,
+      username: values.username,
+      password: values.password,
+    };
+    localStorage.setItem('users', JSON.stringify([...users, newUser]));
+  };
+
   const handleSubmit = (values, { setSubmitting }) => {
     setTimeout(() => {
       setSubmitting(false);
+      registerUser(values);
       signIn(values.username);
       toast.success('Usuário cadastrado com sucesso!');
       history.push('/leads');
