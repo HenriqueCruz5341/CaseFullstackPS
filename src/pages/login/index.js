@@ -13,7 +13,6 @@ const Login = () => {
   const history = useHistory();
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
     setTimeout(() => {
       setSubmitting(false);
       try {

@@ -16,7 +16,6 @@ export const UserProvider = (props) => {
       const index = users.findIndex(
         (user) => username === user.username && password === user.password
       );
-      console.log(index);
       if (index !== -1) {
         setUser(username);
         localStorage.setItem('user', username);
