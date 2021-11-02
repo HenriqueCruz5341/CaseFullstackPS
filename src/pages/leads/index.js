@@ -13,7 +13,7 @@ const Leads = () => {
   const [homeIndex, setHomeIndex] = useState();
 
   useEffect(() => {
-    const loadLeads = JSON.parse(window.localStorage.getItem('leads'), '[]');
+    const loadLeads = JSON.parse(window.localStorage.getItem('leads') || '[]');
     setLeads(loadLeads);
   }, []);
 
@@ -32,8 +32,9 @@ const Leads = () => {
         initialData.columns;
 
       const haveNewLead =
+        segmentedLeads[0] &&
         segmentedLeads[0].length >
-        newColumns[initialData.columnOrder[0]].leadsIds.length;
+          newColumns[initialData.columnOrder[0]].leadsIds.length;
 
       if (newColumns === initialData.columns || haveNewLead) {
         let i = 0;
