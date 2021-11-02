@@ -54,74 +54,72 @@ export const OpportunitiesCheckbox = ({
   };
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <FormControl
-          required
-          component="fieldset"
-          sx={{ m: 3 }}
-          variant="standard"
-          name="opportunities"
-          error={hasError()}
-        >
-          <FormLabel component="legend">Oportunidades</FormLabel>
-          {hasError() && (
-            <HelperText>Selecione pelo menos uma oportunidade</HelperText>
-          )}
-          <FormGroup>
-            <FormControlLabel
-              label="Todos"
-              control={
-                <Checkbox
-                  checked={!Object.values(checked).includes(false)}
-                  onChange={handleChange}
-                  name="all"
-                />
-              }
-            />
-            <FormControlLabel
-              label="RPA"
-              control={
-                <Checkbox
-                  checked={checked.rpa}
-                  onChange={handleChange}
-                  name="rpa"
-                />
-              }
-            />
-            <FormControlLabel
-              label="Produto Digital"
-              control={
-                <Checkbox
-                  checked={checked.digitalProduct}
-                  onChange={handleChange}
-                  name="digitalProduct"
-                />
-              }
-            />
-            <FormControlLabel
-              label="Analytics"
-              control={
-                <Checkbox
-                  checked={checked.analytics}
-                  onChange={handleChange}
-                  name="analytics"
-                />
-              }
-            />
-            <FormControlLabel
-              label="BPM"
-              control={
-                <Checkbox
-                  checked={checked.bpm}
-                  onChange={handleChange}
-                  name="bpm"
-                />
-              }
-            />
-          </FormGroup>
-        </FormControl>
-      </Grid>
+    <Grid container item xs={12}>
+      <FormControl
+        required
+        component="fieldset"
+        sx={{ m: 3 }}
+        variant="standard"
+        name="opportunities"
+        error={hasError()}
+      >
+        <FormLabel component="legend">Oportunidades</FormLabel>
+        {hasError() && (
+          <HelperText>Selecione pelo menos uma oportunidade</HelperText>
+        )}
+        <FormGroup>
+          <FormControlLabel
+            label="Todos"
+            control={
+              <Checkbox
+                checked={!Object.values(checked).includes(false)}
+                onChange={handleChange}
+                name="all"
+              />
+            }
+          />
+          <FormControlLabel
+            label="RPA"
+            control={
+              <Checkbox
+                checked={checked.rpa}
+                onChange={handleChange}
+                name="rpa"
+              />
+            }
+          />
+          <FormControlLabel
+            label="Produto Digital"
+            control={
+              <Checkbox
+                checked={checked.digitalProduct}
+                onChange={handleChange}
+                name="digitalProduct"
+              />
+            }
+          />
+          <FormControlLabel
+            label="Analytics"
+            control={
+              <Checkbox
+                checked={checked.analytics}
+                onChange={handleChange}
+                name="analytics"
+              />
+            }
+          />
+          <FormControlLabel
+            label="BPM"
+            control={
+              <Checkbox
+                checked={checked.bpm}
+                onChange={handleChange}
+                name="bpm"
+              />
+            }
+          />
+        </FormGroup>
+      </FormControl>
     </Grid>
   );
 };
