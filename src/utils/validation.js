@@ -40,5 +40,8 @@ export const ValidationFormLeads = (values) => {
   )
     errors.email = 'Email inválido';
 
+  if (values.phone.length < 14 && values.phone)
+    errors.phone = 'Telefone inválido';
+
   return errors;
 };
