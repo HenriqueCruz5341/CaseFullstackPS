@@ -10,7 +10,7 @@ import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-mui';
 import { useHistory } from 'react-router';
 import { OpportunitiesCheckbox } from '../../components/opportunitiesCheckbox';
-import { ValidationFormLeads } from '../../utils/validation';
+import { validationFormLeads } from '../../utils/validation';
 import { phoneMask } from '../../utils/mask';
 import { toast } from 'react-toastify';
 
@@ -69,7 +69,7 @@ const NewLead = () => {
             analytics: false,
             bpm: false,
           }}
-          validate={ValidationFormLeads}
+          validate={validationFormLeads}
           onSubmit={(values, { setSubmitting }) =>
             handleSubmit(values, { setSubmitting })
           }

@@ -13,6 +13,7 @@ import Leads from './pages/leads';
 import NewLead from './pages/newLead';
 import Register from './pages/register';
 import Header from './components/header';
+import Login from './pages/login';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
         <Switch>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <ProtectRoute path="/leads">
             <Leads />

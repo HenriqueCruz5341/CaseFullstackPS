@@ -1,19 +1,27 @@
-export const ValidationFormRegister = (values) => {
-  const errors = {};
-  const requiredFields = ['username', 'password', 'passwordConfirm'];
-
+const validateAllFields = (values, errors, requiredFields) => {
   requiredFields.forEach((field) => {
     if (!values[field]) {
       errors[field] = 'Obrigatório';
     }
   });
+};
 
+const validatePassword = (values, errors) => {
   if (
     !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
-      values.password && values.password
-    )
+      values.password
+    ) &&
+    values.password
   )
     errors.password = 'Password inválido';
+};
+
+export const validationFormRegister = (values) => {
+  const errors = {};
+  const requiredFields = ['username', 'password', 'passwordConfirm'];
+
+  validateAllFields(values, errors, requiredFields);
+  validatePassword(values, errors);
 
   if (values.password !== values.passwordConfirm)
     errors.passwordConfirm = 'Passwords devem ser iguais';
@@ -21,15 +29,21 @@ export const ValidationFormRegister = (values) => {
   return errors;
 };
 
-export const ValidationFormLeads = (values) => {
+export const validationFormLogin = (values) => {
+  const errors = {};
+  const requiredFields = ['username', 'password'];
+
+  validateAllFields(values, errors, requiredFields);
+  validatePassword(values, errors);
+
+  return errors;
+};
+
+export const validationFormLeads = (values) => {
   const errors = {};
   const requiredFields = ['name', 'phone', 'email'];
 
-  requiredFields.forEach((field) => {
-    if (!values[field]) {
-      errors[field] = 'Obrigatório';
-    }
-  });
+  validateAllFields(values, errors, requiredFields);
 
   if (!Object.values(values).includes(true))
     errors.opportunities = 'Obrigatório';

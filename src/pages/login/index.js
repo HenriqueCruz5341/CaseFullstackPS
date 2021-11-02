@@ -5,30 +5,24 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../components/userProvider';
-import { validationFormRegister } from '../../utils/validation';
+import { validationFormLogin } from '../../utils/validation';
 import { StyledContainer, StyledForm } from './styles';
 
-const Register = () => {
+const Login = () => {
   const { signIn } = useContext(UserContext);
   const history = useHistory();
 
-  const registerUser = (values) => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const newUser = {
-      id: users.length + 1,
-      username: values.username,
-      password: values.password,
-    };
-    localStorage.setItem('users', JSON.stringify([...users, newUser]));
-  };
-
   const handleSubmit = (values, { setSubmitting }) => {
+    console.log(values);
     setTimeout(() => {
       setSubmitting(false);
-      registerUser(values);
-      signIn(values.username, values.password);
-      toast.success('Usuário cadastrado com sucesso!');
-      history.push('/leads');
+      try {
+        signIn(values.username, values.password);
+        toast.success('Login efetuado com sucesso!');
+        history.push('/leads');
+      } catch (error) {
+        toast.error('Username ou password inválidos.');
+      }
     }, 500);
   };
 
@@ -37,16 +31,15 @@ const Register = () => {
       <Paper>
         <Grid container alignItems="center" justifyContent="center">
           <Grid item>
-            <Typography variant="h4">Cadastro</Typography>
+            <Typography variant="h4">Login</Typography>
           </Grid>
 
           <Formik
             initialValues={{
               username: '',
               password: '',
-              passwordConfirm: '',
             }}
-            validate={validationFormRegister}
+            validate={validationFormLogin}
             onSubmit={(values, { setSubmitting }) =>
               handleSubmit(values, { setSubmitting })
             }
@@ -81,16 +74,6 @@ const Register = () => {
                       required
                     />
                   </Grid>
-                  <Grid item xs={10}>
-                    <Field
-                      component={TextField}
-                      type="password"
-                      label="Confirmação Password"
-                      name="passwordConfirm"
-                      fullWidth
-                      required
-                    />
-                  </Grid>
                   {isSubmitting && <LinearProgress />}
                   <Grid item xs={8}>
                     <Button
@@ -101,7 +84,7 @@ const Register = () => {
                       onClick={submitForm}
                       fullWidth
                     >
-                      Registrar
+                      Entrar
                     </Button>
                   </Grid>
                 </Grid>
@@ -114,4 +97,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

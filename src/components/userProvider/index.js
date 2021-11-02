@@ -10,9 +10,20 @@ export const UserProvider = (props) => {
     setUser(user);
   }, []);
 
-  const signIn = (user) => {
-    window.localStorage.setItem('user', user);
-    setUser(user);
+  const signIn = (username, password) => {
+    const users = JSON.parse(window.localStorage.getItem('users')) || [];
+    if (users) {
+      const index = users.findIndex(
+        (user) => username === user.username && password === user.password
+      );
+      console.log(index);
+      if (index !== -1) {
+        setUser(username);
+        localStorage.setItem('user', username);
+        return;
+      }
+    }
+    throw new Error('Invalid username or password');
   };
 
   const signOut = () => {

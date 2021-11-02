@@ -10,7 +10,7 @@ const Header = () => {
 
   const handleLogout = () => {
     signOut();
-    history.push('/');
+    history.push('/login');
   };
 
   return (
@@ -23,7 +23,9 @@ const Header = () => {
       <NavbarItems>
         {!user ? (
           <>
-            <NavbarItem onClick={() => history.push('/')}>Login</NavbarItem>
+            <NavbarItem onClick={() => history.push('/login')}>
+              Login
+            </NavbarItem>
             <NavbarItem onClick={() => history.push('/register')}>
               Register
             </NavbarItem>
