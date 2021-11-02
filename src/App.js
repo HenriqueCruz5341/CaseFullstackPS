@@ -45,9 +45,8 @@ function App() {
           <ProtectRoute path="/newLead">
             <NewLead />
           </ProtectRoute>
-          <Route exact path="/" render={() => <Redirect to="/register" />} />
+          <Route exact path="/" render={() => <Redirect to="/leads" />} />
         </Switch>
-        {/* <Footer /> */}
       </Router>
     </UserProvider>
   );

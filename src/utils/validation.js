@@ -8,7 +8,7 @@ const validateAllFields = (values, errors, requiredFields) => {
 
 const validatePassword = (values, errors) => {
   if (
-    !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
+    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*+-~´`.])(?=.{8,})/.test(
       values.password
     ) &&
     values.password
